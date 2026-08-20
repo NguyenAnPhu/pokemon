@@ -23,7 +23,8 @@ export default {
 <style lang="css" scoped>
 .screen {
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -37,12 +38,13 @@ export default {
 }
 
 .screen h1 {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 12vw, 5rem);
+  text-align: center;
 }
 
 .screen h3 {
   margin-top: 1.5rem;
-  font-size: 3rem;
+  font-size: clamp(2rem, 8vw, 3rem);
 }
 
 .screen button {

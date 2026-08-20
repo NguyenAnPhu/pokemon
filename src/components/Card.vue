@@ -1,37 +1,12 @@
 <template>
-  <div
-    class="card"
-    :class="{ isDisabled: isDisabled }"
-    :style="{
-      height: `${(920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
-      width: `${
-        (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4
-      }px`,
-      perspective: `${
-        ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4) * 2
-      }px`,
-    }"
-  >
+  <div class="card" :class="{ isDisabled: isDisabled }">
     <div
       class="card__inner"
       :class="{ 'is-flipped': isFlipped }"
       @click="onToggleFlipCard"
     >
       <div class="card__face card__face--front">
-        <div
-          class="card__content"
-          :style="{
-            backgroundSize: `${
-              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
-              4 /
-              3
-            }px ${
-              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
-              4 /
-              3
-            }px`,
-          }"
-        ></div>
+        <div class="card__content"></div>
       </div>
       <div class="card__face card__face--back">
         <div
@@ -85,11 +60,9 @@ export default {
 </script>
 <style lang="css" scoped>
 .card {
-  display: inline-block;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  /* width: 90px;
-  height: 120px; */
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  perspective: 1000px;
 }
 
 .card__inner {
@@ -115,11 +88,12 @@ export default {
   backface-visibility: hidden;
   overflow: hidden;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: clamp(0.25rem, 1.5vw, 1rem);
   box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
 }
 .card__face--front .card__content {
   background: url("../assets/images/icon_back.png") no-repeat center center;
+  background-size: 45% auto;
   width: 100%;
   height: 100%;
 }

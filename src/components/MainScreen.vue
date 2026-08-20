@@ -34,7 +34,9 @@ export default {
 <style lang="css" scoped>
 .screen {
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
+  padding-bottom: 4rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -48,23 +50,34 @@ export default {
 }
 
 .screen h1 {
-  font-size: 4.5rem;
+  font-size: clamp(3rem, 12vw, 4.5rem);
   text-transform: uppercase;
 }
 
 .screen p {
-  font-size: 2rem;
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  text-align: center;
 }
 
 .modes {
-  display: flex;
+  display: grid;
   margin-top: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 24px;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .modes {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .modes button {
   font: var(--font);
-  width: 150px;
-  height: 150px;
+  aspect-ratio: 1;
+  padding: 24px;
   background: transparent;
   box-shadow: none;
   border: 1px solid var(--light);

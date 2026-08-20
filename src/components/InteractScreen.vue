@@ -5,11 +5,9 @@
     <div
       class="screen__inner"
       :style="{
-        width: `${
-          ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4 +
-            16) *
-          Math.sqrt(cardsContext.length)
-        }px`,
+        gridTemplateColumns: `repeat(${Math.sqrt(
+          cardsContext.length
+        )}, minmax(0, 1fr))`,
       }"
     >
       <card-flip
@@ -92,7 +90,9 @@ export default {
 <style lang="css" scoped>
 .screen {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
+  overflow-x: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -101,9 +101,9 @@ export default {
   color: var(--light);
 }
 .screen__inner {
-  width: calc(424px);
-  display: flex;
-  flex-wrap: wrap;
-  margin: 2rem auto;
+  width: min(100%, 920px);
+  display: grid;
+  gap: clamp(0.35rem, 1.5vw, 1rem);
+  margin: 0 auto;
 }
 </style>
